@@ -1,12 +1,34 @@
 import java.io.*;
 
-// 1.) Do some sort of computation
-// 2.) Writes out the result to either a file or the terminal
-// 3.) Takes a command-line argument to determine this
 public class Test {
     public static boolean doesUserWantTerminal(final String[] args) { ... }
     public static String getFileToWriteTo(final String[] args) { ... }
-    public static int doComputation() { ... }
+
+    public static FileOutputStream stream = null;
+
+    public static void writeThing(final boolean wantsTerminal,
+                                  final String fileToWriteTo,
+                                  final String thing) {
+        if (wantsTerminal) {
+            System.out.println(thing);
+        } else {
+            if (stream == null) {
+                final File file = new File(fileToWriteTo);
+                stream = new FileOutputStream(file);
+            }
+            stream.writeln(thing);
+        }
+    }
+        
+    // duplication
+    public static int doComputation(final boolean wantsTerminal,
+                                    final String fileToWriteTo) {
+        // do some work
+        writeThing(wantsTerminal, fileToWriteTo, "did something");
+        
+        // do some more work
+        writeThing(wantsTerminal, fileToWriteTo, "did something else");
+    }
     
     public static void main(final String[] args) {
         final boolean wantsTerminal = doesUserWantTerminal(args);
@@ -14,12 +36,8 @@ public class Test {
 
         final int result = doComputation();
         
-        if (wantsTerminal) {
-            System.out.println(result);
-        } else {
-            final File file = new File(fileToWriteTo);
-            final FileOutputStream stream = new FileOutputStream(file);
-            stream.writeln(result);
+        writeThing(wantsTerminal, fileToWriteTo, Integer.toString(result));
+        if (stream != null) {
             stream.close();
         }
     }
