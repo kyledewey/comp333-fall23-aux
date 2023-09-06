@@ -1,29 +1,15 @@
-public class Writer {
-    private final boolean wantsTerminal;
-    private final String fileToWriteTo;    
-    private final FileOutputStream stream;
-
-    public Writer(final boolean wantsTerminal,
-                  final String fileToWriteTo) {
-        if (!wantsTerminal) {
-            final File file = new File(fileToWriteTo);
-            stream = new FileOutputStream(file);
-        } else {
-            stream = null;
-        }
-    }
-    
-    public void writeThing(final String thing) {
-        if (stream == null) {
-            System.out.println(thing);
-        } else {
-            stream.writeln(thing);
-        }
-    }
-
-    public void close() {
-        if (stream != null) {
-            stream.close();
-        }
-    }
+// Destinations:
+// -Terminal: new Writer()
+// -File: new Writer("foo.txt")
+// -Network location: new Writer(new IPAddress("127.0.0.1"))
+// -Database: new Writer(new DatabaseHandle(...))
+//
+// new Writer("foo.txt", new IPAddress("127.0.0.1"), null) - invalid state
+//
+// Problems:
+// #1: blow-up of if/else
+// #2: wasting memory
+// #3: invalid states are representable
+public interface Writer {
+    public void writeThing(final String thing);
 }
