@@ -27,7 +27,8 @@ public class Test {
         // final Writer theWriter = new Writer(doesUserWantTerminal(args),
         //                                     getFileToWriteTo(args));
         final int result = doComputation(theWriter);
-        
+
+        // virtual dispatch/dynamic dispatch/ad-hoc polymorphism
         theWriter.writeThing(Integer.toString(result));
         if (theWriter instanceof TerminalWriter) {
             TerminalWriter.writeThing(theWriter, ...);
