@@ -42,7 +42,8 @@ public class Cons implements ImmutableList {
     // resultTail: [11, 6]
     // result: [7, 11, 6]
     public ImmutableList addAmount(final int amount) {
-        return new Cons(amount + head, tail.addAmount(amount));
+        // one-liner
+        // return new Cons(amount + head, tail.addAmount(amount));
 
         final int resultHead = amount + head;
         final ImmutableList resultTail = tail.addAmount(amount);
