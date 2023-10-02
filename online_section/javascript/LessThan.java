@@ -1,7 +1,7 @@
 public class LessThan implements Predicate {
     public final int amount;
 
-    public LessThen(final int amount) {
+    public LessThan(final int amount) {
         this.amount = amount;
     }
 

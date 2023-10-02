@@ -5,25 +5,50 @@
 //
 // basic idea: computations are data - functions are data
 
+function foreach(array, operation) {
+    for (let index = 0; index < array.length; index++) {
+        let element = array[index];
+        // do something with the element
+        operation(element);
+    }
+    // maybe return
+}
+
+function sumAll(array) {
+    let sum = 0;
+    foreach(array,
+            function (element) {
+                sum = sum + element;
+            });
+    return sum;
+}
+
 // -array: the array of elements
 // -predicate: a function that takes an element; returns
 //  true if the element should be printed
 function printElementsMatching(array, predicate) {
-    for (let index = 0; index < array.length; index++) {
-        let element = array[index];
-        // using the higher-order function
-        // if (element < 5) {
-        if (predicate(element)) {
-            console.log(element);
-        }
-    }
+    foreach(array,
+            function (element) {
+                if (predicate(element)) {
+                    console.log(element);
+                }
+            });
+}
+
+function printAllElementsLessThan(array, amount) {
+    printElementsMatching(array,
+                          // closes over amount
+                          function (e) {
+                              return e < amount;
+                          });
 }
 
 function printAllElementsLessThanFive(array) {
-    printElementsMatching(array,
-                          function (e) {
-                              return e < 5;
-                          });
+    printAllElementsLessThan(array, 5);
+    // printElementsMatching(array,
+    //                       function (e) {
+    //                           return e < 5;
+    //                       });
     // for (let index = 0; index < array.length; index++) {
     //     let element = array[index];
     //     if (element < 5) {
@@ -94,6 +119,14 @@ function wrapAdd(f, z) {
     }
 }
 
+// add(3, 4)
+// -First-order functions obey stack discipline: parameters and local
+//  variables can be allocated on the stack
+function add(x, y) {
+    return x + y;
+}
+
+// -Higher-order functions often don't obey stack discipline
 function delayedAdd(x) {
     return function (y) {
         // closure - closes over x's value
