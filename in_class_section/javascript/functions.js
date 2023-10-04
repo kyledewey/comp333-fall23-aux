@@ -26,6 +26,16 @@ function indirectWhile(foo, boo) {
     }
 }
 
+// filter: which elements do I care about?
+// for (let index = 0; index < array.length; index++) {
+//   if (predicate(array[index])) {
+//     // process element / pass on element
+//
+//
+// map: transform the elements
+// for (let index = 0; index < array.length; index++) {
+//   resultArray[index] = operation(array[index]);
+
 function foreach(array, operation) {
     for (let index = 0; index < array.length; index++) {
         let elem = array[index];
@@ -34,13 +44,42 @@ function foreach(array, operation) {
     }
 }
 
+// operator: (CurrentAccumulator, CurrentElement) => NextAccumulator
+function reduce(array, initialValue, operator) {
+    let accumulator = initialValue;
+    for (let index = 0; index < array.length; index++) {
+        let element = array[index];
+        // accumulator = accumulator + element;
+        accumulator = operator(accumulator, element);
+    }
+    return accumulator;
+}
+    
 function sumAll(array) {
-    let sum = 0;
-    foreach(array,
-            function (elem) {
-                sum = sum + elem;
-            });
-    return sum;
+    return reduce(array, 0, (a, e) => a + e);
+    // let sum = 0;
+    // for (let index = 0; index < array.length; index++) {
+    //     let element = array[index];
+    //     sum = sum + element;
+    // }
+    // return sum;
+}
+
+function productAll(array) {
+    return reduce(array, 1, (a, e) => a * e);
+    // let product = 1; // 1 * ??? = ???
+    // for (let index = 0; index < array.length; index++) {
+    //     let element = array[index];
+    //     product = product * element;
+    // }
+    // return product;
+}
+
+// makePairs([]) ==> ""
+// makePairs([1]) ==> "pair(1, )"
+// makePairs([1, 2, 3]) ==> "pair(1, pair(2, pair(3, )))"
+function makePairs(array) {
+    return reduce(array, "", (a, e) => "pair(" + e + ", " + a + ")");
 }
 
 function abstracted(array, predicate) {
