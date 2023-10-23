@@ -1,6 +1,6 @@
-function getArea(rec) {
-    return rec.width * rec.height;
-}
+// function getArea(rec) {
+//     return rec.width * rec.height;
+// }
 
 // constructor of rectangles
 function Rectangle(w, h) {
@@ -8,5 +8,9 @@ function Rectangle(w, h) {
     // this = {}
     this.width = w;
     this.height = h;
+    // TODO: put into prototype
+    this.getArea = function () {
+        return this.width * this.height;
+    };
     // return this;
 }
