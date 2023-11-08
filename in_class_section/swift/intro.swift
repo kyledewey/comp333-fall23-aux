@@ -1,19 +1,35 @@
-// public static int foo(int x) { ... }
-func fooWithExplicitExternal(param x: Int) -> Int {
-    return x;
+// public static int addOne(int x) {
+//   return x + 1;
+// }
+
+//                  -> ReturnType
+func addOne(x: Int) -> Int {
+    return x + 1;
 }
 
-func fooWithNoExternal(_ x: Int) -> Int {
-    return x;
+// param: external name
+// x: internal name
+func addOneExplicitExternalName(param x: Int) -> Int {
+    //return param + 1;
+    return x + 1;
 }
 
-func fooWithImplicitExternal(x: Int) -> Int {
-    return x;
+func addOneNoArgumentLabel(_ x: Int) -> Int {
+    return x + 1;
 }
 
-print("Hello");
-let temp1 = fooWithExplicitExternal(param: 3);
-let temp2 = fooWithNoExternal(4);
-let temp3 = fooWithImplicitExternal(x: 5);
-print(temp1 + temp2 + temp3);
+//                                                  -> Void
+//                                                  -> ()
+func takesTwoStrings(_ str1: String, _ str2: String) {
+    print(str1);
+    print(str2);
+}
 
+print("Hello world");
+print(addOne(x: 3));
+print(addOneExplicitExternalName(param: 6));
+print(addOneNoArgumentLabel(7));
+
+print(takesTwoStrings("foo", "bar"));
+
+print("Hi", terminator: "");
