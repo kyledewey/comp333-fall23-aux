@@ -32,4 +32,5 @@ print(addOneNoArgumentLabel(7));
 
 print(takesTwoStrings("foo", "bar"));
 
+// self-documenting code: self-describing without comments
 print("Hi", terminator: "");
