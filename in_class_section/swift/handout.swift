@@ -12,6 +12,18 @@ func sub(_ x: Int, _ y: Int) -> Int {
     return x - y;
 }
 
+func returnMulti(a: Int, b: String) -> (Int, String) {
+    return (a, b)
+}
+
+func returnMulti2(a: Int) -> (Int, Int) {
+    return (a, a)
+}
+
+func returnMulti3() -> (String, Int, String) {
+    return ("foo", 2, "bar")
+}
+
 // 2.b.)
 //print(sub(4, 5))
 
@@ -21,6 +33,7 @@ func sub(_ x: Int, _ y: Int) -> Int {
 
 let f1: (Int, Int) -> Int = add;
 print(f1(5, 2));
+print(f1("foo"));
 
 // let f2 = (x, y) => x * y;
 // console.log(f2(2, 3));
@@ -54,3 +67,7 @@ callsFunc(
   //   (x) => 1 + x
   f: { (x: Int) in 1 + x },
   i: 5)
+
+func indirectIf(_ b: Boolean, ifTrue: () -> Int, ifFalse: () -> Int) -> Int {
+    // FOR NEXT TIME: BODY
+}
