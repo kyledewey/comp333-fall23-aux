@@ -127,7 +127,7 @@ print(treeSum(tree1));
 print(treeSum(tree2));
 
 switch tree1 {
-    //    ?
+    //    ?: value
     //   / \
     //  X   X
 case let .Internal(Node.Leaf, value, Node.Leaf):
