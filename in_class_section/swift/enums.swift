@@ -70,3 +70,92 @@ func safeDivide(_ x: Int, _ y: Int) -> DivisionResult {
 
 print(safeDivide(8, 2));
 print(safeDivide(3, 0));
+
+indirect enum Tree {
+    case Leaf
+    case Internal(Tree, Int, Tree)
+}
+
+// treeSum(Tree.Leaf): 0
+func treeSum(_ tree: Tree) -> Int {
+    switch tree {
+        // X
+    case .Leaf:
+        return 0;
+
+        //   ?
+        //  / \
+        // ?   ?
+    case let .Internal(leftChild, value, rightChild):
+        // leftChild: Tree
+        // value: Int
+        // rightChild: Tree
+        let leftSum = treeSum(leftChild);
+        let rightSum = treeSum(rightChild);
+        return leftSum + value + rightSum;
+    }
+}
+
+// X
+let tree1: Tree = Tree.Leaf;
+
+//   3
+//  / \
+// X   X
+let tree2: Tree =
+  Tree.Internal(Tree.Leaf, 3, Tree.Leaf);
+
+//       4
+//      / \
+//     /   \
+//    2     5
+//   / \   / \
+//  X   X X   X
+let tree3 =
+  Tree.Internal(
+    Tree.Internal(
+      Tree.Leaf,
+      2,
+      Tree.Leaf),
+    4,
+    Tree.Internal(
+      Tree.Leaf,
+      5,
+      Tree.Leaf));
+
+print("---------");
+print(treeSum(tree1));
+print(treeSum(tree2));
+print(treeSum(tree3));
+
+indirect enum MyList {
+    case Nil
+    case Cons(Int, MyList)
+}
+
+// ImmutableList list = new Cons(1, new Cons(2, new Cons(3, new Nil())));
+let list = MyList.Cons(1, MyList.Cons(2, MyList.Cons(3, MyList.Nil)));
+
+// switch tree1 {
+//     //   2
+//     //  / \
+//     // ?   X
+// case let .Internal(leftChild, 2, Tree.Leaf):
+//     print(leftChild);
+
+//     //      ?
+//     //     / \
+//     //    /   \
+//     //   1     ?
+//     //  / \   / \
+//     // ?   ? X   _
+// case let .Internal(.Internal(first, 1, second),
+//                    third,
+//                    .Internal(Tree.Leaf, fourth, _)):
+    
+switch list {
+case let .Cons(2, _):
+    return 0;
+    
+}
+

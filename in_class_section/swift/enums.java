@@ -30,3 +30,18 @@ public class DivisionSuccess implements DivisionResult {
         }
     }
 }
+
+public class Example {
+    public static void checkPattern(Tree tree) {
+        if (tree instanceof Internal) {
+            Internal asInternal = (Internal)tree;
+            if (asInternal.left instanceof Internal &&
+                asInternal.right instanceof Internal) {
+                Internal leftInternal = (Internal)asInternal.left;
+                Internal rightInternal = (Internal)asInternal.right;
+                if (leftInternal.value == 1 &&
+                    rightInternal.left instanceof Leaf) {
+                    Tree first = leftInteral.left;
+                    Tree second = leftInternal.right;
+                    int value = asInternal.value;
+                    int fourth = rightInternal.value;
