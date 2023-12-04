@@ -31,3 +31,12 @@ print(length(list2));
 // let list3: List<Int> =
 //   //        Int  List<String>
 //   List.Cons(5,   list2);
+
+// Define a function that takes a value of some
+// generic type A, and returns the same value
+func g<A>(_ value: A) -> A {
+    return value;
+}
+
+print(g(1));
+print(g("foo"));
