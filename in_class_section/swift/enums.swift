@@ -86,12 +86,12 @@ func treeSum(_ tree: Tree) -> Int {
         //   ?
         //  / \
         // ?   ?
-    case let .Internal(leftChild, value, rightChild):
-        // leftChild: Tree
+    case let .Internal(lc, value, rc):
+        // lcChild: Tree
         // value: Int
-        // rightChild: Tree
-        let leftSum = treeSum(leftChild);
-        let rightSum = treeSum(rightChild);
+        // rc: Tree
+        let leftSum = treeSum(lc);
+        let rightSum = treeSum(rc);
         return leftSum + value + rightSum;
     }
 }
@@ -154,8 +154,26 @@ let list = MyList.Cons(1, MyList.Cons(2, MyList.Cons(3, MyList.Nil)));
 //                    .Internal(Tree.Leaf, fourth, _)):
     
 switch list {
-case let .Cons(2, _):
+case .Cons(2, _):
     return 0;
-    
+case .Cons(3, .Cons(4, _)):
+    return 1;
+case let .Cons(x, _):
+    return x;
+case .Nil:
+    return -1;
 }
 
+let example =
+  MyList.Cons(1, MyList.Cons(2, MyList.Nil));
+print(length(example));
+
+func length(_ list: MyList) -> Int {
+    switch list {
+    case .Nil:
+        return 0;
+    case let .Cons(_, tail):
+        return 1 + length(tail);
+    }
+}
+    
